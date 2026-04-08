@@ -1,18 +1,21 @@
-/* Google Fonts жүктеу - Montserrat Alternates қазақ тіліндегі мәтінге өте қолайлы */
+/* Google Fonts жүктеу - Montserrat Alternates қазақ тіліндегі мәтінге және техникалық терминдерге өте қолайлы */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Негізгі айнымалылар мен баптаулар */
+/* Негізгі айнымалылар мен стильдік баптаулар */
 :root {
-    --nav-bg: rgba(10, 25, 41, 0.95);      /* Навигацияның қою көк фоны */
-    --content-bg: rgba(26, 32, 44, 0.9);   /* Контент блогының фоны */
+    --nav-bg: rgba(10, 25, 41, 0.95);      /* Навигацияның терең көк фоны */
+    --content-bg: rgba(20, 26, 35, 0.9);   /* Контент блогының жартылай мөлдір фоны */
     --card-width: 280px;
     --card-height: 200px;
-    --accent: #ffcc00;                     /* Алтын түсті акцент (Алаш рухы) */
-    --accent-dark: #b8860b;                /* Қою алтын / қоңыр */
+    --accent: #00ffcc;                     /* Химиялық лабораториялық неон түсі (акцент) */
+    --accent-gold: #ffcc00;                /* Маңызды элементтерге арналған алтын түс */
+    --accent-dark: #008b8b;                /* Қою аквамарин */
     --text-white: #ffffff;
+    --text-gray: #e0e0e0;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* Жалпы баптаулар */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,49 +28,50 @@ html {
 }
 
 body {
-    background: #0a0a0a;
+    background: #050a0f; /* Өте қою көк, қараға жақын */
     color: var(--text-white);
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* Навигациялық мәзір стилі */
+/* Навигациялық мәзір (Navbar) */
 nav#mainNav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
     display: flex;
     justify-content: center;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
     border-bottom: 2px solid var(--accent-dark);
 }
 
 nav#mainNav a {
     color: var(--text-white);
     text-decoration: none;
-    padding: 22px 28px;
+    padding: 20px 25px;
     display: block;
     transition: var(--transition);
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
 }
 
 nav#mainNav a:hover,
 nav#mainNav a.active {
     color: var(--accent);
-    background: rgba(255, 204, 0, 0.1);
+    background: rgba(0, 255, 204, 0.1);
 }
 
-/* Хедер (Басты бет) */
+/* Басты бет (Header) */
 header#home {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000') center/cover no-repeat;
+    /* Химиялық зертхана стиліндегі фондық сурет */
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1532187875462-ce59232f90fd?q=80&w=2000') center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -76,89 +80,96 @@ header#home {
 
 header .overlay {
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, transparent 10%, rgba(5, 10, 15, 0.9) 100%);
 }
 
 .header-content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
 }
 
 .header-content h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    margin-bottom: 20px;
+    font-size: clamp(2rem, 8vw, 4rem);
+    margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    color: var(--accent);
-    text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+    letter-spacing: 5px;
+    color: var(--accent-gold);
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
 }
 
 .header-content p {
-    font-size: 1.4rem;
-    font-weight: 400;
-    max-width: 800px;
+    font-size: 1.3rem;
+    font-weight: 300;
+    max-width: 700px;
     margin: 0 auto;
-    opacity: 0.95;
-    color: #e0e0e0;
+    color: var(--text-gray);
+    opacity: 0.9;
 }
 
-/* Секциялардың ортақ стилі */
+/* Секциялардың жалпы стилі */
 section {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 20px;
+    padding: 100px 20px;
     position: relative;
     background-attachment: fixed; /* Параллакс эффектісі */
 }
 
-/* Секциялардың фондық суреттеріне арналған кластар */
-.bg1 { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/history1.png') center/cover; }
-.bg2 { background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/alash_bg.jpg') center/cover; }
-.bg3 { background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/kokan.jpg') center/cover; }
-.bg4 { background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('img/kz_map.jpg') center/cover; }
+/* Секция фондары (химиялық визуалдар үшін) */
+.bg1 { background: linear-gradient(rgba(5,10,15,0.85), rgba(5,10,15,0.85)), url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2000') center/cover; }
+.bg2 { background: linear-gradient(rgba(5,10,15,0.9), rgba(5,10,15,0.9)), url('https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2000') center/cover; }
+.bg3 { background: linear-gradient(rgba(5,10,15,0.85), rgba(5,10,15,0.85)), url('https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=2000') center/cover; }
+.bg4 { background: linear-gradient(rgba(5,10,15,0.95), rgba(5,10,15,0.95)), url('https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=2000') center/cover; }
 
-/* Контент блогының контейнері */
+/* Контент блогы (Шыны эффекісі / Glassmorphism) */
 .content {
     position: relative;
     z-index: 2;
     background: var(--content-bg);
-    padding: 60px;
-    border-radius: 24px;
-    max-width: 1000px;
-    width: 95%;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 204, 0, 0.2);
+    padding: 50px;
+    border-radius: 30px;
+    max-width: 1100px;
+    width: 90%;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 204, 0.15);
     text-align: center;
+    backdrop-filter: blur(10px);
 }
 
 section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+    font-size: 2.6rem;
+    margin-bottom: 25px;
     color: var(--accent);
     text-transform: uppercase;
     position: relative;
     display: inline-block;
+    letter-spacing: 2px;
 }
 
 section h2::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-    margin: 10px auto 0;
+    width: 80px;
+    height: 4px;
+    background: var(--accent-gold);
+    margin: 12px auto 0;
+    border-radius: 2px;
 }
 
 section p {
-    font-size: 1.15rem;
-    margin-bottom: 35px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
     text-align: justify;
-    color: #f0f0f0;
+    color: var(--text-gray);
+    line-height: 1.8;
 }
 
 /* Карточкалар жүйесі */
@@ -166,57 +177,53 @@ section p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 35px;
-    margin-top: 50px;
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .card {
     width: var(--card-width);
     height: var(--card-height);
-    border-radius: 20px;
+    border-radius: 25px;
     position: relative;
     overflow: hidden;
-    /* Карточкалардың дефолттық градиенті (егер сурет жүктелмесе) */
-    background: linear-gradient(135deg, #0f172a, #b8860b);
-    background-size: cover;
-    background-position: center;
+    /* Молекулалық стильдегі градиент */
+    background: linear-gradient(135deg, rgba(10, 25, 41, 1), rgba(0, 139, 139, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: var(--transition);
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(40px);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    padding: 20px;
+    cursor: default;
 }
 
-/* Анимация қосылғандағы класс (JS арқылы басқарылады) */
 .card.show {
     opacity: 1;
     transform: translateY(0);
 }
 
 .card:hover {
-    transform: scale(1.08) translateY(-15px);
-    box-shadow: 0 20px 40px rgba(255, 204, 0, 0.3);
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 255, 204, 0.2);
     border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(10, 25, 41, 1), rgba(0, 255, 204, 0.3));
 }
 
 .card span {
-    font-size: 1.4rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.9);
-    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-white);
     text-align: center;
-    line-height: 1.2;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-/* Кесте дизайны */
+/* Кесте дизайны (Заманауи стиль) */
 .table-container {
-    margin-top: 40px;
-    border-radius: 15px;
+    margin-top: 35px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--accent-dark);
 }
@@ -224,93 +231,99 @@ section p {
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 table th {
     background: var(--accent-dark);
-    color: #000;
-    padding: 18px;
+    color: var(--text-white);
+    padding: 20px;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 table td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(255, 204, 0, 0.1);
-    font-size: 1.1rem;
-    color: #fff;
+    padding: 18px;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    transition: background 0.3s ease;
 }
 
 table tr:last-child td {
     border-bottom: none;
 }
 
-table tr:hover {
-    background: rgba(255, 204, 0, 0.05);
+table tr:hover td {
+    background: rgba(0, 255, 204, 0.05);
+    color: var(--accent);
 }
 
-/* Custom Scrollbar */
+/* Арнайы Scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #050505;
+    background: #050a0f;
 }
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(var(--accent-dark), var(--accent));
-    border-radius: 6px;
-    border: 3px solid #050505;
+    border-radius: 5px;
 }
 
 /* Футер */
 footer {
-    background: #050505;
-    color: var(--accent);
+    background: #020508;
+    color: var(--accent-gold);
     text-align: center;
-    padding: 40px 20px;
-    border-top: 2px solid var(--accent-dark);
-    font-weight: 500;
-    letter-spacing: 1px;
+    padding: 50px 20px;
+    border-top: 1px solid var(--accent-dark);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/* Адаптивті дизайн (Мобильді құрылғылар үшін) */
+/* Адаптивті дизайн (Мобильді нұсқа) */
 @media (max-width: 1024px) {
     .content {
         padding: 40px;
+        width: 95%;
     }
 }
 
 @media (max-width: 768px) {
     nav#mainNav {
-        flex-wrap: wrap;
+        padding: 5px 0;
     }
     nav#mainNav a {
-        padding: 15px 12px;
-        font-size: 0.7rem;
+        padding: 12px 15px;
+        font-size: 0.75rem;
     }
     header#home {
-        height: 80vh;
+        height: 70vh;
     }
     .header-content h1 {
         font-size: 2.2rem;
     }
     section h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
     .card {
-        width: 100%; /* Мобильді телефонда карточкалар толық енді алады */
-        height: 160px;
+        width: 100%;
+        height: 140px;
+    }
+    .content {
+        padding: 30px 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .content {
-        padding: 25px 15px;
-        border-radius: 0;
+    .header-content h1 {
+        font-size: 1.8rem;
     }
     section p {
         font-size: 1rem;

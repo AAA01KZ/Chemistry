@@ -1,62 +1,61 @@
-// ==== Smooth scroll with nav offset ====
-// Используем обработчик клика, чтобы плавно скроллить и учитывать высоту фиксированной навигации
 const nav = document.getElementById('mainNav');
 const navLinks = nav.querySelectorAll('a');
 
-function getNavOffset(){
-	// возвращаем высоту навигации (если есть рамки/паддинги, берём полную высоту)
-	return nav.getBoundingClientRect().height;
+function getNavOffset() {
+    return nav.getBoundingClientRect().height;
 }
 
 navLinks.forEach(link => {
-	link.addEventListener('click', function(e){
-		const targetId = this.getAttribute('href');
-		if (!targetId.startsWith('#')) return;
-		const targetEl = document.querySelector(targetId);
-		if (!targetEl) return;
-		e.preventDefault();
+    link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (!targetId.startsWith('#')) return;
+        const targetEl = document.querySelector(targetId);
+        if (!targetEl) return;
+        e.preventDefault();
 
-		const navOffset = getNavOffset();
-		// координата целевого элемента относительно документа
-		const targetY = targetEl.getBoundingClientRect().top + window.scrollY;
-		const scrollToY = targetY - navOffset + 1; // +1 чтобы элемент был виден под навом
+        const navOffset = getNavOffset();
+        const targetY = targetEl.getBoundingClientRect().top + window.scrollY;
+        const scrollToY = targetY - navOffset + 1;
 
-		window.scrollTo({top: scrollToY, behavior: 'smooth'});
-	});
+        window.scrollTo({top: scrollToY, behavior: 'smooth'});
+    });
 });
 
-// Подсветка активного пункта меню при скролле
-function highlightNav(){
-	const fromTop = window.scrollY + getNavOffset() + 5;
-	navLinks.forEach(link => {
-		const id = link.getAttribute('href');
-		if (!id.startsWith('#')) return;
-		const section = document.querySelector(id);
-		if (!section) return;
-		if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
-			link.classList.add('active');
-		} else {
-			link.classList.remove('active');
-		}
-	});
+function highlightNav() {
+    const fromTop = window.scrollY + getNavOffset() + 5;
+    navLinks.forEach(link => {
+        const id = link.getAttribute('href');
+        if (!id.startsWith('#')) return;
+        const section = document.querySelector(id);
+        if (!section) return;
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 }
-window.addEventListener('scroll', highlightNav);
-window.addEventListener('load', highlightNav);
 
-// ==== Карточки: появление при скролле (только карточки анимируются) ====
 const cards = document.querySelectorAll('.fade-card');
-function revealCards(){
-	const trigger = window.innerHeight * 0.86;
-	cards.forEach(card => {
-		const top = card.getBoundingClientRect().top;
-		if (top < trigger) card.classList.add('show');
-	});
+function revealCards() {
+    const trigger = window.innerHeight * 0.86;
+    cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < trigger) card.classList.add('show');
+    });
 }
-window.addEventListener('scroll', revealCards);
-window.addEventListener('load', revealCards);
 
-// ==== Дополнительно: если окна меняют размер, повторим проверку (например на мобильных) ====
+window.addEventListener('scroll', () => {
+    highlightNav();
+    revealCards();
+});
+
+window.addEventListener('load', () => {
+    highlightNav();
+    revealCards();
+});
+
 window.addEventListener('resize', () => {
-	revealCards();
-	highlightNav();
+    revealCards();
+    highlightNav();
 });
